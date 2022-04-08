@@ -13,11 +13,24 @@ func TestLinkedListCreation(t *testing.T) {
 
 func TestLinkedListAdd(t *testing.T) {
 	ll := NewLinkedList()
+	testAddingToLinkedList(t, ll)
+	testAddingSameKeyToLinkedList(t, ll)
+}
+
+func testAddingToLinkedList(t *testing.T, ll *LinkedList) {
+	t.Helper()
 	ll.Add(3, 4)
 	require.NotNil(t, ll.head)
 	require.Equal(t, ll.head.key, uint64(3))
 	require.Equal(t, ll.head.value, uint64(4))
 	require.Nil(t, ll.head.next)
+}
+
+func testAddingSameKeyToLinkedList(t *testing.T, ll *LinkedList) {
+	t.Helper()
+	ll.Add(3, 5)
+	require.Equal(t, ll.head.key, uint64(3))
+	require.Equal(t, ll.head.value, uint64(5))
 }
 
 func TestLinkedListSearch(t *testing.T) {

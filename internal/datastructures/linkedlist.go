@@ -26,10 +26,15 @@ type LinkedListBehavior interface {
 }
 
 func (l *LinkedList) Add(k uint64, v uint64) {
+	_, err := l.Search(k)
+	if err == nil {
+		l.Delete(k)
+	}
 	var n *Node = newNode(k, v)
 	if l.head == nil {
 		l.head = n
 	} else {
+
 		curr := l.head
 		for curr.next != nil {
 			curr = curr.next
